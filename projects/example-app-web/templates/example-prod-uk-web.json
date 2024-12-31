@@ -1,0 +1,41 @@
+[
+    {
+      "name": "${cw_logs_appname}",
+      "image": "${app_image}",
+      "cpu": ${cpu},
+      "memoryReservation": ${memory},
+      "portMappings": [],
+      "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+              "awslogs-group": "/ecs/${cw_logs_appname}",
+              "awslogs-region": "${aws_region}",
+              "awslogs-stream-prefix": "/ecs/${cw_logs_appname}"
+          }
+      },
+      "portMappings": [
+        {
+          "containerPort": ${app_port},
+          "hostPort": ${app_port},
+          "protocol": "${app_port_protocol}"
+        }
+      ],
+      "environment": [
+        {
+            "name": "ENVIRONMENT",
+            "value": "${environment}"
+        },
+        {
+            "name": "TARGET_ENV",
+            "value": "/web/${environment}/target_env" # lets assume we want to specify our environment incase we need to use RUM/APM in future
+        }
+      ],
+      "secrets": [
+        {
+          "name": "API_URL",
+          "valueFrom": "/web/${environment}/api_url"
+        }
+      ],
+      "essential": true
+    }
+]

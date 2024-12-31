@@ -1,0 +1,56 @@
+# Project-specific
+export TF_VAR_project_dir=example-app-web
+export TF_VAR_project_name=example-prod-uk-web
+export TF_VAR_environment=production-uk
+export TF_VAR_environment_short=prod-uk
+export TF_VAR_product=example
+
+# Stage-specific
+export TF_VAR_s3bucketstatename=s3-example-prod-uk-tf-state
+
+# Stage-specific - Load Balacing / Networking
+export TF_VAR_health_check_path=/
+export TF_VAR_target_group_port=3000
+export TF_VAR_target_group_protocol=HTTP
+export TF_VAR_health_check_expected_port=200,301,302
+export TF_VAR_health_check_healthy_threshold=3
+export TF_VAR_health_check_interval=30
+export TF_VAR_health_check_timeout=3
+export TF_VAR_health_check_unhealthy_threshold=2
+export TF_VAR_alb_https_listener_port=443
+export TF_VAR_alb_redirect_status_code=HTTP_301
+export TF_VAR_acm_certificate=*.prod-uk.exampledomain.com 
+export TF_VAR_dns_subdomain=web.prod-uk.exampledomain.com 
+
+# Stage-specific - Container Settings
+export TF_VAR_app_port=3000
+export TF_VAR_app_count=1
+export TF_VAR_app_image=12154541244.dkr.ecr.eu-west-2.amazonaws.com/react-service-repository:latest
+export TF_VAR_ecs_cluster_name=example-prod-uk-cluster
+export TF_VAR_ecs_service_name=example-prod-uk-web-service
+export TF_VAR_fargate_cpu=256
+export TF_VAR_fargate_memory=512
+export TF_VAR_overall_cpu=512
+export TF_VAR_overall_memory=1024
+export TF_VAR_ecs_task_execution_role=arn:aws:iam::8676168187:role/ECSTaskExecutionRole
+export TF_VAR_link_to_lb=true
+export TF_VAR_ecs_scheduled_task_enabled=0
+
+# Stage-specific - Autoscaling Settings
+export TF_VAR_scaling_min_count=1
+export TF_VAR_scaling_max_count=1
+export TF_VAR_scaling_up_cpu_threshold=90
+export TF_VAR_scaling_down_cpu_threshold=20
+export TF_VAR_scaling_cpu_metric_aggregation=Maximum
+export TF_VAR_scaling_wait_time=10
+export TF_VAR_ecs_autoscale_role=arn:aws:iam::8676168187:role/ECSAutoScalingRole
+
+# Makefile-specific
+export aws_account=example-production-uk
+export s3_bucket=ss3-example-prod-uk-tf-state
+export aws_access_key=$AWS_ACCESS_KEY_ID
+export aws_secret_key=$AWS_SECRET_ACCESS_KEY
+export aws_session_token=$AWS_SESSION_TOKEN
+export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID
+export TF_VAR_aws_secret_key=$AWS_SECRET_ACCESS_KEY
+export TF_VAR_aws_session_token=$AWS_SESSION_TOKEN
